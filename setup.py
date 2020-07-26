@@ -6,7 +6,7 @@ with open('README.md') as f:
 setup(
   name = 'pg-notify-webhook',         # How you named your package folder (MyLib)
   # packages = ['pg-notify-webhook'],   # Chose the same as "name"
-  version = '1.1',      # Start with a small number and increase it with every change you make
+  version = '1.2',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'LISTEN to Postgres and NOTIFY webhooks',   # Give a short description about your library
   long_description = long_description,    # README.md
