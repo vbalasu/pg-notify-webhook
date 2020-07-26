@@ -6,6 +6,10 @@ The content of the message is sent as the JSON payload to the webhook.
 
 You can use this to invoke AWS Lambda functions (fronted by API gateway) or any other system that receives HTTP requests.
 
+Install it as follows:
+
+`pip install pg-notify-webhook`
+
 You simply set up a `config.yaml` with the database connection string and define one or more channels and webhooks. Then start the server as follows:
 
 `pg-notify-webhook`
