@@ -14,6 +14,10 @@ You simply set up a `config.yaml` with the database connection string and define
 
 `pg-notify-webhook`
 
+Once the server is running, you can send notifications from Postgres:
+
+`NOTIFY one, '{"name": "Vijay"}'`
+
 
 ##### config.yaml
 ```yaml

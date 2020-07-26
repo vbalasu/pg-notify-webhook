@@ -1,10 +1,15 @@
 from distutils.core import setup
+
+with open('README.md') as f:
+  long_description = f.read()
+
 setup(
   name = 'pg-notify-webhook',         # How you named your package folder (MyLib)
   # packages = ['pg-notify-webhook'],   # Chose the same as "name"
   version = '1.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'LISTEN to Postgres and NOTIFY webhooks',   # Give a short description about your library
+  long_description = long_description,    # README.md
   author = 'Vijay Balasubramaniam',                   # Type in your name
   author_email = 'vbalasu@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/vbalasu/pg-notify-webhook',   # Provide either the link to your github or to your website
