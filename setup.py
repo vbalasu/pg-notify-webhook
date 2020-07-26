@@ -1,15 +1,19 @@
-from distutils.core import setup
+from setuptools import setup
 
-with open('README.rst') as f:
-  long_description = f.read()
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
   name = 'pg-notify-webhook',         # How you named your package folder (MyLib)
   # packages = ['pg-notify-webhook'],   # Chose the same as "name"
   version = '1.2',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = 'LISTEN to Postgres and NOTIFY webhooks',   # Give a short description about your library
+  description = 'Trigger webhooks from postgres',   # Give a short description about your library
   long_description = long_description,    # README.md
+  long_description_content_type = 'text/markdown',
   author = 'Vijay Balasubramaniam',                   # Type in your name
   author_email = 'vbalasu@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/vbalasu/pg-notify-webhook',   # Provide either the link to your github or to your website
@@ -18,8 +22,7 @@ setup(
   install_requires=[            # I get to this in a second
           'requests',
           'psycopg2-binary',
-          'pyyaml'
-      ],
+          'pyyaml'],
   scripts=['bin/pg-notify-webhook'],
   classifiers=[
     'Development Status :: 4 - Beta',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
