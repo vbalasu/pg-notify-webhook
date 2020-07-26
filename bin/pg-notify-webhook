@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import select, psycopg2, requests, json, datetime, yaml
 import psycopg2.extensions
 from json import JSONDecodeError

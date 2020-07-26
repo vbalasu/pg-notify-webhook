@@ -8,7 +8,7 @@ You can use this to invoke AWS Lambda functions (fronted by API gateway) or any 
 
 You simply set up a `config.yaml` with the database connection string and define one or more channels and webhooks. Then start the server as follows:
 
-`python pg-notify-webhook.py`
+`pg-notify-webhook`
 
 
 ##### config.yaml
