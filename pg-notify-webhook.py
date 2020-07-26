@@ -1,0 +1,35 @@
+import select, psycopg2, requests, json, datetime, yaml
+import psycopg2.extensions
+from json import JSONDecodeError
+import logging
+with open('config.yaml') as f:
+    config = yaml.load(f)
+logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', level=logging.DEBUG)
+
+conn = psycopg2.connect(config['DSN'])
+conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+curs = conn.cursor()
+for channel in config['channels']:
+    curs.execute(f"LISTEN {channel};")
+
+logging.info("Waiting for notifications")
+while True:
+    if select.select([conn],[],[],5) == ([],[],[]):
+        print(".", end='')
+    else:
+        conn.poll()
+        while conn.notifies:
+            notify = conn.notifies.pop(0)
+            try:
+                logging.info("Got NOTIFY " + str(notify.pid) + ' ' + notify.channel + ' ' + notify.payload)
+                webhook = config['webhooks'][notify.channel]
+                try:
+                    data = json.loads(notify.payload)
+                except JSONDecodeError:
+                    logging.error("Invalid JSON")
+                else:
+                    requests.post(webhook, json=data)
+                    logging.info("Webhook launched: " + webhook)
+            except Exception as err:
+                logging.error(err)

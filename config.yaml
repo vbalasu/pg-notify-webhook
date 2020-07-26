@@ -1,0 +1,8 @@
+DSN: postgresql://user:password@hostname:5432/database
+channels:
+  - one
+  - two
+webhooks: 
+  one: https://postman-echo.com/get?foo1=bar1&foo2=bar2
+  two: https://example.com
+
